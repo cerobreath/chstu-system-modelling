@@ -2,20 +2,73 @@
  * Created by JFormDesigner on Wed Feb 26 07:39:29 EET 2025
  */
 
-package stu.cn.ua;
+package stu.cn.ua.lab1;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.*;
 import net.miginfocom.swing.*;
-import widgets.*;
+import com.formdev.flatlaf.FlatDarculaLaf;
+
+import stat.Histo;
+import widgets.ChooseData;
+import widgets.Diagram;
 
 /**
  * @author cerobreath
  */
 public class Main extends JFrame {
+    private Histo histo;
+
     public Main() {
         initComponents();
+        histo = new Histo();
+        button.addActionListener(this::generateData);
+    }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf()); // Встановлюємо темну тему
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        SwingUtilities.invokeLater(() -> {
+            Main frame = new Main();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+        });
+    }
+
+    private void generateData(ActionEvent e) {
+        String input = chooseData.getText().trim();
+
+        if (input.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a sample size!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int sampleSize = Integer.parseInt(input);
+            if (sampleSize <= 0) {
+                JOptionPane.showMessageDialog(this, "Sample size must be a positive number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            histo.initFromTo(0.0, 1.0, 10);
+            for (int i = 0; i < sampleSize; i++) {
+                histo.add(Math.random());
+            }
+
+            textArea.setText(histo.toString());
+            SwingUtilities.invokeLater(() -> {
+                histo.showRelFrec(diagram);
+                diagram.repaint();
+            });
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid input! Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void initComponents() {
@@ -27,14 +80,11 @@ public class Main extends JFrame {
         textArea = new JTextArea();
         chooseData = new ChooseData();
         button = new JButton();
-        PearsonTesting = new JDialog();
-        chooseRandom = new ChooseRandom();
-        textArea1 = new JTextArea();
-        button1 = new JButton();
 
         //======== this ========
         setIconImage(null);
         setTitle("Laboratory work \u21161. Denys Lysenok, KI-221");
+        setResizable(false);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -47,10 +97,10 @@ public class Main extends JFrame {
                 contentPanel.setLayout(new MigLayout(
                     "insets dialog,hidemode 3",
                     // columns
-                    "[224,fill]" +
-                    "[289,fill]",
+                    "[496,fill]" +
+                    "[339,fill]",
                     // rows
-                    "[331]" +
+                    "[374]" +
                     "[]" +
                     "[]" +
                     "[]" +
@@ -64,12 +114,12 @@ public class Main extends JFrame {
 
                 //---- diagram ----
                 diagram.setTitleText("Histogram");
-                diagram.setMinimumSize(new Dimension(347, 300));
+                diagram.setMinimumSize(new Dimension(470, 380));
                 contentPanel.add(diagram, "cell 0 0,align center center,grow 0 0");
 
                 //======== scrollPane ========
                 {
-                    scrollPane.setMinimumSize(new Dimension(18, 302));
+                    scrollPane.setMinimumSize(new Dimension(18, 405));
                     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
                     scrollPane.setViewportBorder(new MatteBorder(1, 1, 1, 1, Color.black));
 
@@ -78,12 +128,13 @@ public class Main extends JFrame {
                     textArea.setEditable(false);
                     textArea.setLineWrap(true);
                     textArea.setWrapStyleWord(true);
+                    textArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                     scrollPane.setViewportView(textArea);
                 }
                 contentPanel.add(scrollPane, "cell 1 0,aligny top,grow 100 0");
 
                 //---- chooseData ----
-                chooseData.setBackground(new Color(0x2e3440));
+                chooseData.setBackground(new Color(0x3c3f41));
                 chooseData.setTitle("Sample size");
                 chooseData.setMinimumSize(new Dimension(100, 50));
                 contentPanel.add(chooseData, "cell 0 2 1 3");
@@ -97,39 +148,8 @@ public class Main extends JFrame {
             dialogPane.add(contentPanel, BorderLayout.CENTER);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(630, 425);
+        setSize(855, 530);
         setLocationRelativeTo(getOwner());
-
-        //======== PearsonTesting ========
-        {
-            PearsonTesting.setTitle("Testing according to Pearson's criterion");
-            var PearsonTestingContentPane = PearsonTesting.getContentPane();
-            PearsonTestingContentPane.setLayout(new MigLayout(
-                "hidemode 3",
-                // columns
-                "[316,fill]",
-                // rows
-                "[]" +
-                "[]" +
-                "[]"));
-            PearsonTestingContentPane.add(chooseRandom, "cell 0 0");
-
-            //---- textArea1 ----
-            textArea1.setMinimumSize(new Dimension(62, 100));
-            textArea1.setEditable(false);
-            textArea1.setLineWrap(true);
-            textArea1.setWrapStyleWord(true);
-            textArea1.setPreferredSize(new Dimension(20, 20));
-            PearsonTestingContentPane.add(textArea1, "cell 0 1");
-
-            //---- button1 ----
-            button1.setText("Test");
-            button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 1f));
-            button1.setMinimumSize(new Dimension(20, 26));
-            PearsonTestingContentPane.add(button1, "cell 0 2");
-            PearsonTesting.pack();
-            PearsonTesting.setLocationRelativeTo(PearsonTesting.getOwner());
-        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -141,9 +161,5 @@ public class Main extends JFrame {
     private JTextArea textArea;
     private ChooseData chooseData;
     private JButton button;
-    private JDialog PearsonTesting;
-    private ChooseRandom chooseRandom;
-    private JTextArea textArea1;
-    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
