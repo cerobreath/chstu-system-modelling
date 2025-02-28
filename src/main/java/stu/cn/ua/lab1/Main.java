@@ -29,7 +29,7 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel(new FlatDarculaLaf()); // Встановлюємо темну тему
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
         } catch (Exception e) {
             e.printStackTrace();
         }
