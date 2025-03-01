@@ -89,6 +89,8 @@ new FormModel {
 						name: "taskScrollPanel"
 						add( new FormComponent( "javax.swing.JTextPane" ) {
 							name: "textHtmTask"
+							"editable": false
+							"font": new java.awt.Font( "Segoe UI", 0, 12 )
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Task"
@@ -131,10 +133,25 @@ new FormModel {
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 						"$layoutConstraints": "hidemode 3"
-						"$columnConstraints": "[fill][fill]"
-						"$rowConstraints": "[][][]"
+						"$columnConstraints": "[649,fill]"
+						"$rowConstraints": "[319][108]"
 					} ) {
 						name: "infoPanel"
+						"minimumSize": new java.awt.Dimension( 887, 135 )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+							name: "photoPanel"
+							"preferredSize": new java.awt.Dimension( 500, 500 )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 0"
+						} )
+						add( new FormComponent( "javax.swing.JTextArea" ) {
+							name: "textInfoAuthor"
+							"text": "Author of the project:\nLysenok Denys Vitaliiovych,\n3rd year student majoring in Computer Engineering\nEmail: cerobreath@gmail.com\nGitHub: cerobreath"
+							"font": new java.awt.Font( "Segoe UI", 0, 16 )
+							"editable": false
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 1"
+						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Info"
 					} )

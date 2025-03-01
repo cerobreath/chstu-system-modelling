@@ -4,25 +4,27 @@
 
 package stu.cn.ua.rgr;
 
+import javax.imageio.ImageIO;
 import javax.swing.border.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import net.miginfocom.swing.MigLayout;
-import stat.Histo;
 import widgets.*;
 import widgets.ChooseData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * @author cerobreath
  */
 public class Main extends JFrame {
-    private Histo histo;
 
     public Main() {
         initComponents();
-        histo = new Histo();
+        loadHtmlTask();
     }
 
     public static void main(String[] args) {
@@ -59,6 +61,8 @@ public class Main extends JFrame {
         regresPanel = new JPanel();
         transientPanel = new JPanel();
         infoPanel = new JPanel();
+        photoPanel = createPhotoPanel();
+        textInfoAuthor = new JTextArea();
 
         //======== this ========
         setTitle("Computational-graphical work. Denys Lysenok, KI-221");
@@ -161,6 +165,10 @@ public class Main extends JFrame {
 
                 //======== taskScrollPanel ========
                 {
+
+                    //---- textHtmTask ----
+                    textHtmTask.setEditable(false);
+                    textHtmTask.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                     taskScrollPanel.setViewportView(textHtmTask);
                 }
                 tabbedPane.addTab("Task", taskScrollPanel);
@@ -223,15 +231,43 @@ public class Main extends JFrame {
 
                 //======== infoPanel ========
                 {
+                    infoPanel.setMinimumSize(new Dimension(887, 135));
                     infoPanel.setLayout(new MigLayout(
                         "hidemode 3",
                         // columns
-                        "[fill]" +
-                        "[fill]",
+                        "[649,fill]",
                         // rows
-                        "[]" +
-                        "[]" +
-                        "[]"));
+                        "[319]" +
+                        "[108]"));
+
+                    //======== photoPanel ========
+                    {
+                        photoPanel.setLayout(null);
+
+                        {
+                            // compute preferred size
+                            Dimension preferredSize = new Dimension();
+                            for(int i = 0; i < photoPanel.getComponentCount(); i++) {
+                                Rectangle bounds = photoPanel.getComponent(i).getBounds();
+                                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                            }
+                            Insets insets = photoPanel.getInsets();
+                            preferredSize.width += insets.right;
+                            preferredSize.height += insets.bottom;
+                            photoPanel.setMinimumSize(preferredSize);
+                            photoPanel.setPreferredSize(preferredSize);
+                        }
+                    }
+                    infoPanel.add(photoPanel, "cell 0 0");
+                    // A crutch in the code
+                    photoPanel.setPreferredSize(new Dimension(1500, 1500));
+
+                    //---- textInfoAuthor ----
+                    textInfoAuthor.setText("Author of the project:\nLysenok Denys Vitaliiovych,\n3rd year student majoring in Computer Engineering\nEmail: cerobreath@gmail.com\nGitHub: cerobreath");
+                    textInfoAuthor.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+                    textInfoAuthor.setEditable(false);
+                    infoPanel.add(textInfoAuthor, "cell 0 1");
                 }
                 tabbedPane.addTab("Info", infoPanel);
             }
@@ -241,6 +277,51 @@ public class Main extends JFrame {
         setSize(900, 550);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
+    }
+
+    private void loadHtmlTask() {
+        String str = "/tz.htm";
+        URL url = getClass().getResource(str);
+        if (url != null) {
+            try {
+                textHtmTask.setPage(url);
+            } catch (IOException e) {
+                System.err.println("Problems with file " + str);
+            }
+        } else {
+            System.err.println("File not found: " + str);
+        }
+    }
+
+    private JPanel createPhotoPanel() {
+        return new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                BufferedImage img;
+                URL url = getClass().getResource("/cerobreath.jpg");
+                if (url != null) {
+                    try {
+                        img = ImageIO.read(url);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                    double k = (double) img.getHeight() / img.getWidth();
+                    int width = getWidth();
+                    int height = getHeight();
+                    if ((double) height / width > k)
+                        height = (int) (width * k);
+                    else
+                        width = (int) (height / k);
+                    Image scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                    g2d.drawImage(scaledImg, 0, 0, null);
+                } else {
+                    System.err.println("Image not found");
+                }
+            }
+        };
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -262,5 +343,7 @@ public class Main extends JFrame {
     private JPanel regresPanel;
     private JPanel transientPanel;
     private JPanel infoPanel;
+    private JPanel photoPanel;
+    private JTextArea textInfoAuthor;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
