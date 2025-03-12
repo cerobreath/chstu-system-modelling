@@ -8,6 +8,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import net.miginfocom.swing.MigLayout;
 import rnd.Negexp;
 import rnd.Norm;
+import widgets.*;
 import widgets.ChooseData;
 import widgets.ChooseRandom;
 
@@ -59,11 +60,17 @@ public class Main extends JFrame {
         taskScrollPanel = new JScrollPane();
         textHtmTask = new JTextPane();
         testPanel = new JPanel();
+        diagram3 = new Diagram();
+        diagram4 = new Diagram();
+        diagram5 = new Diagram();
+        panel1 = new JPanel();
+        checkBox1 = new JCheckBox();
+        button1 = new JButton();
         statPanel = new JPanel();
         regresPanel = new JPanel();
         transientPanel = new JPanel();
         infoPanel = new JPanel();
-        photoPanel = createPhotoPanel();
+        photoPanel = new JPanel();
         textInfoAuthor = new JTextArea();
 
         //======== this ========
@@ -100,24 +107,24 @@ public class Main extends JFrame {
                     new EtchedBorder(),
                     new TitledBorder(LineBorder.createBlackLineBorder(), "Ore transport time by dumper truck", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                leftSettingModelPanel.add(chooseRandomTransportTime, "cell 0 1,aligny center,growy 0");
                 chooseRandomTransportTime.setRandom(new Negexp(15));
+                leftSettingModelPanel.add(chooseRandomTransportTime, "cell 0 1,aligny center,growy 0");
 
                 //---- chooseRandomUnloadTimeBunker ----
                 chooseRandomUnloadTimeBunker.setBorder(new CompoundBorder(
                     new EtchedBorder(),
                     new TitledBorder(LineBorder.createBlackLineBorder(), "Ore unloading time in the hopper", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                leftSettingModelPanel.add(chooseRandomUnloadTimeBunker, "cell 0 2,aligny center,growy 0");
                 chooseRandomUnloadTimeBunker.setRandom(new Norm(5, 1));
+                leftSettingModelPanel.add(chooseRandomUnloadTimeBunker, "cell 0 2,aligny center,growy 0");
 
                 //---- chooseRandomUnloadTimeSite ----
                 chooseRandomUnloadTimeSite.setBorder(new CompoundBorder(
                     new EtchedBorder(),
                     new TitledBorder(LineBorder.createBlackLineBorder(), "Ore unloading time at the site", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                leftSettingModelPanel.add(chooseRandomUnloadTimeSite, "cell 0 3,aligny center,growy 0");
                 chooseRandomUnloadTimeSite.setRandom(new Norm(7, 1));
+                leftSettingModelPanel.add(chooseRandomUnloadTimeSite, "cell 0 3,aligny center,growy 0");
 
                 //---- chooseDataDumpTrucks ----
                 chooseDataDumpTrucks.setBackground(new Color(0x3c3f41));
@@ -128,8 +135,8 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataDumpTrucks.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataDumpTrucks.setMinimumSize(new Dimension(50, 55));
-                leftSettingModelPanel.add(chooseDataDumpTrucks, "cell 0 4,aligny center,growy 0");
                 chooseDataDumpTrucks.setInt(5);
+                leftSettingModelPanel.add(chooseDataDumpTrucks, "cell 0 4,aligny center,growy 0");
 
                 //---- chooseDataExcavator ----
                 chooseDataExcavator.setBackground(new Color(0x3c3f41));
@@ -140,8 +147,8 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataExcavator.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataExcavator.setMinimumSize(new Dimension(50, 55));
-                leftSettingModelPanel.add(chooseDataExcavator, "cell 0 5,aligny center,growy 0");
                 chooseDataExcavator.setInt(50);
+                leftSettingModelPanel.add(chooseDataExcavator, "cell 0 5,aligny center,growy 0");
 
                 //---- chooseDataCrusher ----
                 chooseDataCrusher.setBackground(new Color(0x3c3f41));
@@ -152,8 +159,8 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataCrusher.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataCrusher.setMinimumSize(new Dimension(50, 55));
-                leftSettingModelPanel.add(chooseDataCrusher, "cell 0 6,aligny center,growy 0");
                 chooseDataCrusher.setInt(45);
+                leftSettingModelPanel.add(chooseDataCrusher, "cell 0 6,aligny center,growy 0");
 
                 //---- chooseDataLoader ----
                 chooseDataLoader.setBackground(new Color(0x3c3f41));
@@ -164,8 +171,8 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataLoader.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataLoader.setMinimumSize(new Dimension(50, 55));
-                leftSettingModelPanel.add(chooseDataLoader, "cell 0 7,aligny center,growy 0");
                 chooseDataLoader.setInt(30);
+                leftSettingModelPanel.add(chooseDataLoader, "cell 0 7,aligny center,growy 0");
             }
             splitPane.setLeftComponent(leftSettingModelPanel);
 
@@ -187,12 +194,30 @@ public class Main extends JFrame {
                     testPanel.setLayout(new MigLayout(
                         "hidemode 3",
                         // columns
-                        "[fill]" +
-                        "[fill]",
+                        "[646,grow,fill]",
                         // rows
-                        "[]" +
-                        "[]" +
-                        "[]"));
+                        "[grow]" +
+                        "[grow]" +
+                        "[grow]" +
+                        "[grow]"));
+                    testPanel.add(diagram3, "cell 0 0");
+                    testPanel.add(diagram4, "cell 0 1");
+                    testPanel.add(diagram5, "cell 0 2");
+
+                    //======== panel1 ========
+                    {
+                        panel1.setLayout(new BorderLayout());
+
+                        //---- checkBox1 ----
+                        checkBox1.setText("text");
+                        checkBox1.setPreferredSize(new Dimension(200, 20));
+                        panel1.add(checkBox1, BorderLayout.WEST);
+
+                        //---- button1 ----
+                        button1.setText("text");
+                        panel1.add(button1, BorderLayout.EAST);
+                    }
+                    testPanel.add(panel1, "cell 0 3");
                 }
                 tabbedPane.addTab("Test", testPanel);
 
@@ -244,13 +269,16 @@ public class Main extends JFrame {
                     infoPanel.setLayout(new MigLayout(
                         "hidemode 3",
                         // columns
-                        "[649,fill]",
+                        "[649,grow,fill]",
                         // rows
-                        "[319]" +
+                        "[319,grow]" +
                         "[108]"));
 
                     //======== photoPanel ========
                     {
+                        photoPanel = createPhotoPanel();
+                        photoPanel.setPreferredSize(new Dimension(1500, 1500));
+                        photoPanel.setMinimumSize(new Dimension(1500, 1500));
                         photoPanel.setLayout(null);
 
                         {
@@ -269,9 +297,9 @@ public class Main extends JFrame {
                         }
                     }
                     infoPanel.add(photoPanel, "cell 0 0");
-                    photoPanel.setPreferredSize(new Dimension(1500, 1500));
 
                     //---- textInfoAuthor ----
+                    photoPanel.setPreferredSize(new Dimension(1500, 1500));
                     textInfoAuthor.setText("Author of the project:\nLysenok Denys Vitaliiovych,\n3rd year student majoring in Computer Engineering\nEmail: cerobreath@gmail.com\nGitHub: cerobreath");
                     textInfoAuthor.setFont(new Font("Segoe UI", Font.PLAIN, 16));
                     textInfoAuthor.setEditable(false);
@@ -282,7 +310,7 @@ public class Main extends JFrame {
             splitPane.setRightComponent(tabbedPane);
         }
         contentPane.add(splitPane, BorderLayout.CENTER);
-        setSize(900, 550);
+        setSize(900, 690);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -347,6 +375,12 @@ public class Main extends JFrame {
     private JScrollPane taskScrollPanel;
     private JTextPane textHtmTask;
     private JPanel testPanel;
+    private Diagram diagram3;
+    private Diagram diagram4;
+    private Diagram diagram5;
+    private JPanel panel1;
+    private JCheckBox checkBox1;
+    private JButton button1;
     private JPanel statPanel;
     private JPanel regresPanel;
     private JPanel transientPanel;
