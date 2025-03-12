@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Feb 26 07:39:29 EET 2025
  */
 
-package stu.cn.ua.rgr;
+package stu.cn.ua.rgr1;
 
 import javax.imageio.ImageIO;
 import javax.swing.border.*;
