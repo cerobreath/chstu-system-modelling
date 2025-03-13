@@ -84,8 +84,8 @@ public class Main extends JFrame {
         return diagramTransportTime;
     }
 
-    public JCheckBox getConcoleLoggerCheckBox() {
-        return concoleLoggerCheckBox;
+    public JCheckBox getConsoleLoggerCheckBox() {
+        return consoleLoggerCheckBox;
     }
 
     private void initComponents() {
@@ -108,7 +108,7 @@ public class Main extends JFrame {
         diagramCrusherQueue = new Diagram();
         diagramTransportTime = new Diagram();
         diagramInteractionPanel = new JPanel();
-        concoleLoggerCheckBox = new JCheckBox();
+        consoleLoggerCheckBox = new JCheckBox();
         diagramStartbutton = new JButton();
         statPanel = new JPanel();
         regresPanel = new JPanel();
@@ -265,11 +265,11 @@ public class Main extends JFrame {
                     {
                         diagramInteractionPanel.setLayout(new BorderLayout());
 
-                        //---- concoleLoggerCheckBox ----
-                        concoleLoggerCheckBox.setText("Console logger");
-                        concoleLoggerCheckBox.setPreferredSize(new Dimension(200, 20));
-                        concoleLoggerCheckBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                        diagramInteractionPanel.add(concoleLoggerCheckBox, BorderLayout.WEST);
+                        //---- consoleLoggerCheckBox ----
+                        consoleLoggerCheckBox.setText("Console logger");
+                        consoleLoggerCheckBox.setPreferredSize(new Dimension(200, 20));
+                        consoleLoggerCheckBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                        diagramInteractionPanel.add(consoleLoggerCheckBox, BorderLayout.WEST);
 
                         //---- diagramStartbutton ----
                         diagramStartbutton.setText("Start");
@@ -438,7 +438,7 @@ public class Main extends JFrame {
     private Diagram diagramCrusherQueue;
     private Diagram diagramTransportTime;
     private JPanel diagramInteractionPanel;
-    private JCheckBox concoleLoggerCheckBox;
+    private JCheckBox consoleLoggerCheckBox;
     private JButton diagramStartbutton;
     private JPanel statPanel;
     private JPanel regresPanel;
