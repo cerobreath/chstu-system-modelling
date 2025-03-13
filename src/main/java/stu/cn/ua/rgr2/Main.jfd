@@ -76,14 +76,14 @@ new FormModel {
 						"value": "cell 0 5,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataSiteCapacity"
+						name: "chooseDataOreBatchSize"
 						"background": #Color0
-						"title": "Site capacity"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Site capacity", 2, 3, #Font0, null ), #BevelBorder0 )
+						"title": "Maximum ore lot size"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Maximum ore lot size", 2, 3, #Font0, null ), #BevelBorder0 )
 						"font": #Font1
 						"minimumSize": #Dimension0
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataSiteCapacity.setInt(200);"
+							"JavaCodeGenerator.postInitCode": "chooseDataOreBatchSize.setInt(60);"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 6,aligny center,growy 0"

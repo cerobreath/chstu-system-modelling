@@ -54,7 +54,7 @@ public class Main extends JFrame {
         chooseRandomLoader = new ChooseRandom();
         chooseDataDumpTrucks = new ChooseData();
         chooseDataBunkerCapacity = new ChooseData();
-        chooseDataSiteCapacity = new ChooseData();
+        chooseDataOreBatchSize = new ChooseData();
         chooseDataSimulationTime = new ChooseData();
         tabbedPane = new JTabbedPane();
         taskScrollPanel = new JScrollPane();
@@ -150,17 +150,17 @@ public class Main extends JFrame {
                 chooseDataBunkerCapacity.setInt(100);
                 leftSettingModelPanel.add(chooseDataBunkerCapacity, "cell 0 5,aligny center,growy 0");
 
-                //---- chooseDataSiteCapacity ----
-                chooseDataSiteCapacity.setBackground(new Color(0x3c3f41));
-                chooseDataSiteCapacity.setTitle("Site capacity");
-                chooseDataSiteCapacity.setBorder(new CompoundBorder(
-                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Site capacity", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                //---- chooseDataOreBatchSize ----
+                chooseDataOreBatchSize.setBackground(new Color(0x3c3f41));
+                chooseDataOreBatchSize.setTitle("Maximum ore lot size");
+                chooseDataOreBatchSize.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Maximum ore lot size", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataSiteCapacity.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataSiteCapacity.setMinimumSize(new Dimension(50, 55));
-                chooseDataSiteCapacity.setInt(200);
-                leftSettingModelPanel.add(chooseDataSiteCapacity, "cell 0 6,aligny center,growy 0");
+                chooseDataOreBatchSize.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataOreBatchSize.setMinimumSize(new Dimension(50, 55));
+                chooseDataOreBatchSize.setInt(60);
+                leftSettingModelPanel.add(chooseDataOreBatchSize, "cell 0 6,aligny center,growy 0");
 
                 //---- chooseDataSimulationTime ----
                 chooseDataSimulationTime.setBackground(new Color(0x3c3f41));
@@ -369,7 +369,7 @@ public class Main extends JFrame {
     private ChooseRandom chooseRandomLoader;
     private ChooseData chooseDataDumpTrucks;
     private ChooseData chooseDataBunkerCapacity;
-    private ChooseData chooseDataSiteCapacity;
+    private ChooseData chooseDataOreBatchSize;
     private ChooseData chooseDataSimulationTime;
     private JTabbedPane tabbedPane;
     private JScrollPane taskScrollPanel;
