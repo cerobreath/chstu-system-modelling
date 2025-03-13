@@ -49,13 +49,13 @@ public class Main extends JFrame {
         splitPane = new JSplitPane();
         leftSettingModelPanel = new JPanel();
         Title = new JLabel();
-        chooseRandomTransportTime = new ChooseRandom();
-        chooseRandomUnloadTimeBunker = new ChooseRandom();
-        chooseRandomUnloadTimeSite = new ChooseRandom();
+        chooseRandomExcavator = new ChooseRandom();
+        chooseRandomCrusher = new ChooseRandom();
+        chooseRandomLoader = new ChooseRandom();
         chooseDataDumpTrucks = new ChooseData();
-        chooseDataExcavator = new ChooseData();
-        chooseDataCrusher = new ChooseData();
-        chooseDataLoader = new ChooseData();
+        chooseDataBunkerCapacity = new ChooseData();
+        chooseDataSiteCapacity = new ChooseData();
+        chooseDataSimulationTime = new ChooseData();
         tabbedPane = new JTabbedPane();
         taskScrollPanel = new JScrollPane();
         textHtmTask = new JTextPane();
@@ -102,29 +102,29 @@ public class Main extends JFrame {
                 Title.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 leftSettingModelPanel.add(Title, "cell 0 0,alignx center,growx 0");
 
-                //---- chooseRandomTransportTime ----
-                chooseRandomTransportTime.setBorder(new CompoundBorder(
+                //---- chooseRandomExcavator ----
+                chooseRandomExcavator.setBorder(new CompoundBorder(
                     new EtchedBorder(),
-                    new TitledBorder(LineBorder.createBlackLineBorder(), "Ore transport time by dumper truck", TitledBorder.CENTER, TitledBorder.TOP,
+                    new TitledBorder(LineBorder.createBlackLineBorder(), "Excavator productivity", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                chooseRandomTransportTime.setRandom(new Negexp(15));
-                leftSettingModelPanel.add(chooseRandomTransportTime, "cell 0 1,aligny center,growy 0");
+                chooseRandomExcavator.setRandom(new Negexp(50));
+                leftSettingModelPanel.add(chooseRandomExcavator, "cell 0 1,aligny center,growy 0");
 
-                //---- chooseRandomUnloadTimeBunker ----
-                chooseRandomUnloadTimeBunker.setBorder(new CompoundBorder(
+                //---- chooseRandomCrusher ----
+                chooseRandomCrusher.setBorder(new CompoundBorder(
                     new EtchedBorder(),
-                    new TitledBorder(LineBorder.createBlackLineBorder(), "Ore unloading time in the hopper", TitledBorder.CENTER, TitledBorder.TOP,
+                    new TitledBorder(LineBorder.createBlackLineBorder(), "Stone crusher productivity", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                chooseRandomUnloadTimeBunker.setRandom(new Norm(5, 1));
-                leftSettingModelPanel.add(chooseRandomUnloadTimeBunker, "cell 0 2,aligny center,growy 0");
+                chooseRandomCrusher.setRandom(new Norm(45, 8));
+                leftSettingModelPanel.add(chooseRandomCrusher, "cell 0 2,aligny center,growy 0");
 
-                //---- chooseRandomUnloadTimeSite ----
-                chooseRandomUnloadTimeSite.setBorder(new CompoundBorder(
+                //---- chooseRandomLoader ----
+                chooseRandomLoader.setBorder(new CompoundBorder(
                     new EtchedBorder(),
-                    new TitledBorder(LineBorder.createBlackLineBorder(), "Ore unloading time at the site", TitledBorder.CENTER, TitledBorder.TOP,
+                    new TitledBorder(LineBorder.createBlackLineBorder(), "Loader productivity", TitledBorder.CENTER, TitledBorder.TOP,
                         new Font("Segoe UI", Font.PLAIN, 14), Color.lightGray)));
-                chooseRandomUnloadTimeSite.setRandom(new Norm(7, 1));
-                leftSettingModelPanel.add(chooseRandomUnloadTimeSite, "cell 0 3,aligny center,growy 0");
+                chooseRandomLoader.setRandom(new Norm(30, 5));
+                leftSettingModelPanel.add(chooseRandomLoader, "cell 0 3,aligny center,growy 0");
 
                 //---- chooseDataDumpTrucks ----
                 chooseDataDumpTrucks.setBackground(new Color(0x3c3f41));
@@ -138,41 +138,41 @@ public class Main extends JFrame {
                 chooseDataDumpTrucks.setInt(5);
                 leftSettingModelPanel.add(chooseDataDumpTrucks, "cell 0 4,aligny center,growy 0");
 
-                //---- chooseDataExcavator ----
-                chooseDataExcavator.setBackground(new Color(0x3c3f41));
-                chooseDataExcavator.setTitle("Excavator productivity ");
-                chooseDataExcavator.setBorder(new CompoundBorder(
-                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Ore transport time by dumper truck", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                //---- chooseDataBunkerCapacity ----
+                chooseDataBunkerCapacity.setBackground(new Color(0x3c3f41));
+                chooseDataBunkerCapacity.setTitle("Bunker capacity");
+                chooseDataBunkerCapacity.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Bunker capacity", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataExcavator.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataExcavator.setMinimumSize(new Dimension(50, 55));
-                chooseDataExcavator.setInt(50);
-                leftSettingModelPanel.add(chooseDataExcavator, "cell 0 5,aligny center,growy 0");
+                chooseDataBunkerCapacity.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataBunkerCapacity.setMinimumSize(new Dimension(50, 55));
+                chooseDataBunkerCapacity.setInt(100);
+                leftSettingModelPanel.add(chooseDataBunkerCapacity, "cell 0 5,aligny center,growy 0");
 
-                //---- chooseDataCrusher ----
-                chooseDataCrusher.setBackground(new Color(0x3c3f41));
-                chooseDataCrusher.setTitle("Stone crusher productivity");
-                chooseDataCrusher.setBorder(new CompoundBorder(
-                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Ore unloading time in the hopper", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                //---- chooseDataSiteCapacity ----
+                chooseDataSiteCapacity.setBackground(new Color(0x3c3f41));
+                chooseDataSiteCapacity.setTitle("Site capacity");
+                chooseDataSiteCapacity.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Site capacity", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataCrusher.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataCrusher.setMinimumSize(new Dimension(50, 55));
-                chooseDataCrusher.setInt(45);
-                leftSettingModelPanel.add(chooseDataCrusher, "cell 0 6,aligny center,growy 0");
+                chooseDataSiteCapacity.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataSiteCapacity.setMinimumSize(new Dimension(50, 55));
+                chooseDataSiteCapacity.setInt(200);
+                leftSettingModelPanel.add(chooseDataSiteCapacity, "cell 0 6,aligny center,growy 0");
 
-                //---- chooseDataLoader ----
-                chooseDataLoader.setBackground(new Color(0x3c3f41));
-                chooseDataLoader.setTitle("Forklift productivity");
-                chooseDataLoader.setBorder(new CompoundBorder(
-                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Ore unloading time at the site", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                //---- chooseDataSimulationTime ----
+                chooseDataSimulationTime.setBackground(new Color(0x3c3f41));
+                chooseDataSimulationTime.setTitle("Simulation time");
+                chooseDataSimulationTime.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Simulation time", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataLoader.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataLoader.setMinimumSize(new Dimension(50, 55));
-                chooseDataLoader.setInt(30);
-                leftSettingModelPanel.add(chooseDataLoader, "cell 0 7,aligny center,growy 0");
+                chooseDataSimulationTime.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataSimulationTime.setMinimumSize(new Dimension(50, 55));
+                chooseDataSimulationTime.setInt(50);
+                leftSettingModelPanel.add(chooseDataSimulationTime, "cell 0 7,aligny center,growy 0");
             }
             splitPane.setLeftComponent(leftSettingModelPanel);
 
@@ -197,24 +197,24 @@ public class Main extends JFrame {
                         "[646,grow,fill]",
                         // rows
                         "[grow]" +
+                        "[grow]rel" +
                         "[grow]" +
-                        "[grow]" +
-                        "[grow]"));
-                    testPanel.add(diagram3, "cell 0 0");
-                    testPanel.add(diagram4, "cell 0 1");
-                    testPanel.add(diagram5, "cell 0 2");
+                        "[]"));
+                    testPanel.add(diagram3, "cell 0 0,grow");
+                    testPanel.add(diagram4, "cell 0 1,grow");
+                    testPanel.add(diagram5, "cell 0 2,grow");
 
                     //======== panel1 ========
                     {
                         panel1.setLayout(new BorderLayout());
 
                         //---- checkBox1 ----
-                        checkBox1.setText("text");
+                        checkBox1.setText("Console logger");
                         checkBox1.setPreferredSize(new Dimension(200, 20));
                         panel1.add(checkBox1, BorderLayout.WEST);
 
                         //---- button1 ----
-                        button1.setText("text");
+                        button1.setText("Start");
                         panel1.add(button1, BorderLayout.EAST);
                     }
                     testPanel.add(panel1, "cell 0 3");
@@ -364,13 +364,13 @@ public class Main extends JFrame {
     private JSplitPane splitPane;
     private JPanel leftSettingModelPanel;
     private JLabel Title;
-    private ChooseRandom chooseRandomTransportTime;
-    private ChooseRandom chooseRandomUnloadTimeBunker;
-    private ChooseRandom chooseRandomUnloadTimeSite;
+    private ChooseRandom chooseRandomExcavator;
+    private ChooseRandom chooseRandomCrusher;
+    private ChooseRandom chooseRandomLoader;
     private ChooseData chooseDataDumpTrucks;
-    private ChooseData chooseDataExcavator;
-    private ChooseData chooseDataCrusher;
-    private ChooseData chooseDataLoader;
+    private ChooseData chooseDataBunkerCapacity;
+    private ChooseData chooseDataSiteCapacity;
+    private ChooseData chooseDataSimulationTime;
     private JTabbedPane tabbedPane;
     private JScrollPane taskScrollPanel;
     private JTextPane textHtmTask;

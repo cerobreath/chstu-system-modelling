@@ -23,28 +23,28 @@ new FormModel {
 						"value": "cell 0 0,alignx center,growx 0"
 					} )
 					add( new FormComponent( "widgets.ChooseRandom" ) {
-						name: "chooseRandomTransportTime"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Ore transport time by dumper truck", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
+						name: "chooseRandomExcavator"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Excavator productivity", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseRandomTransportTime.setRandom(new Negexp(15));"
+							"JavaCodeGenerator.postInitCode": "chooseRandomExcavator.setRandom(new Negexp(50));"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseRandom" ) {
-						name: "chooseRandomUnloadTimeBunker"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Ore unloading time in the hopper", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
+						name: "chooseRandomCrusher"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Stone crusher productivity", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseRandomUnloadTimeBunker.setRandom(new Norm(5, 1));"
+							"JavaCodeGenerator.postInitCode": "chooseRandomCrusher.setRandom(new Norm(45, 8));"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 2,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseRandom" ) {
-						name: "chooseRandomUnloadTimeSite"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Ore unloading time at the site", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
+						name: "chooseRandomLoader"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.TitledBorder( new javax.swing.border.LineBorder( new java.awt.Color( 0, 0, 0, 255 ), 1, false ), "Loader productivity", 2, 2, new java.awt.Font( "Segoe UI", 0, 14 ), sfield java.awt.Color lightGray ) )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseRandomUnloadTimeSite.setRandom(new Norm(7, 1));"
+							"JavaCodeGenerator.postInitCode": "chooseRandomLoader.setRandom(new Norm(30, 5));"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 3,aligny center,growy 0"
@@ -63,40 +63,40 @@ new FormModel {
 						"value": "cell 0 4,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataExcavator"
-						"background": new java.awt.Color( 60, 63, 65, 255 )
-						"title": "Excavator productivity "
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Ore transport time by dumper truck", 2, 3, new java.awt.Font( "Dialog", 0, 14 ), null ), #BevelBorder0 )
-						"font": new java.awt.Font( "Segoe UI", 0, 14 )
-						"minimumSize": new java.awt.Dimension( 50, 55 )
+						name: "chooseDataBunkerCapacity"
+						"background": &Color0 new java.awt.Color( 60, 63, 65, 255 )
+						"title": "Bunker capacity"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Bunker capacity", 2, 3, &Font0 new java.awt.Font( "Dialog", 0, 14 ), null ), #BevelBorder0 )
+						"font": &Font1 new java.awt.Font( "Segoe UI", 0, 14 )
+						"minimumSize": &Dimension0 new java.awt.Dimension( 50, 55 )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataExcavator.setInt(50);"
+							"JavaCodeGenerator.postInitCode": "chooseDataBunkerCapacity.setInt(100);"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataCrusher"
-						"background": new java.awt.Color( 60, 63, 65, 255 )
-						"title": "Stone crusher productivity"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Ore unloading time in the hopper", 2, 3, new java.awt.Font( "Dialog", 0, 14 ), null ), #BevelBorder0 )
-						"font": new java.awt.Font( "Segoe UI", 0, 14 )
-						"minimumSize": new java.awt.Dimension( 50, 55 )
+						name: "chooseDataSiteCapacity"
+						"background": #Color0
+						"title": "Site capacity"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Site capacity", 2, 3, #Font0, null ), #BevelBorder0 )
+						"font": #Font1
+						"minimumSize": #Dimension0
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataCrusher.setInt(45);"
+							"JavaCodeGenerator.postInitCode": "chooseDataSiteCapacity.setInt(200);"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 6,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataLoader"
+						name: "chooseDataSimulationTime"
 						"background": new java.awt.Color( 60, 63, 65, 255 )
-						"title": "Forklift productivity"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Ore unloading time at the site", 2, 3, new java.awt.Font( "Dialog", 0, 14 ), null ), #BevelBorder0 )
+						"title": "Simulation time"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Simulation time", 2, 3, new java.awt.Font( "Dialog", 0, 14 ), null ), #BevelBorder0 )
 						"font": new java.awt.Font( "Segoe UI", 0, 14 )
 						"minimumSize": new java.awt.Dimension( 50, 55 )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataLoader.setInt(30);"
+							"JavaCodeGenerator.postInitCode": "chooseDataSimulationTime.setInt(50);"
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 7,aligny center,growy 0"
@@ -119,36 +119,36 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 						"$layoutConstraints": "hidemode 3"
 						"$columnConstraints": "[646,grow,fill]"
-						"$rowConstraints": "[grow][grow][grow][grow]"
+						"$rowConstraints": "[grow][grow]rel[grow][]"
 					} ) {
 						name: "testPanel"
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagram3"
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-							"value": "cell 0 0"
+							"value": "cell 0 0,grow"
 						} )
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagram4"
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-							"value": "cell 0 1"
+							"value": "cell 0 1,grow"
 						} )
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagram5"
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-							"value": "cell 0 2"
+							"value": "cell 0 2,grow"
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 							name: "panel1"
 							add( new FormComponent( "javax.swing.JCheckBox" ) {
 								name: "checkBox1"
-								"text": "text"
+								"text": "Console logger"
 								"preferredSize": new java.awt.Dimension( 200, 20 )
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "West"
 							} )
 							add( new FormComponent( "javax.swing.JButton" ) {
 								name: "button1"
-								"text": "text"
+								"text": "Start"
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "East"
 							} )
