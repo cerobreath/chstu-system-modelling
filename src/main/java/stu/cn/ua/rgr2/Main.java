@@ -44,6 +44,50 @@ public class Main extends JFrame {
         });
     }
 
+    public ChooseRandom getChooseRandomExcavator() {
+        return chooseRandomExcavator;
+    }
+
+    public ChooseRandom getChooseRandomCrusher() {
+        return chooseRandomCrusher;
+    }
+
+    public ChooseRandom getChooseRandomLoader() {
+        return chooseRandomLoader;
+    }
+
+    public ChooseData getChooseDataDumpTrucks() {
+        return chooseDataDumpTrucks;
+    }
+
+    public ChooseData getChooseDataBunkerCapacity() {
+        return chooseDataBunkerCapacity;
+    }
+
+    public ChooseData getChooseDataOreBatchSize() {
+        return chooseDataOreBatchSize;
+    }
+
+    public ChooseData getChooseDataSimulationTime() {
+        return chooseDataSimulationTime;
+    }
+
+    public Diagram getDiagramExcavatorLoad() {
+        return diagramExcavatorLoad;
+    }
+
+    public Diagram getDiagramCrusherQueue() {
+        return diagramCrusherQueue;
+    }
+
+    public Diagram getDiagramTransportTime() {
+        return diagramTransportTime;
+    }
+
+    public JCheckBox getCheckBox1() {
+        return checkBox1;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         splitPane = new JSplitPane();
