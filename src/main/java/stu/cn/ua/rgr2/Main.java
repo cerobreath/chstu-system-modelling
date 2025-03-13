@@ -60,9 +60,9 @@ public class Main extends JFrame {
         taskScrollPanel = new JScrollPane();
         textHtmTask = new JTextPane();
         testPanel = new JPanel();
-        diagram3 = new Diagram();
-        diagram4 = new Diagram();
-        diagram5 = new Diagram();
+        diagramExcavatorLoad = new Diagram();
+        diagramCrusherQueue = new Diagram();
+        diagramTransportTime = new Diagram();
         panel1 = new JPanel();
         checkBox1 = new JCheckBox();
         button1 = new JButton();
@@ -200,9 +200,22 @@ public class Main extends JFrame {
                         "[grow]rel" +
                         "[grow]" +
                         "[]"));
-                    testPanel.add(diagram3, "cell 0 0,grow");
-                    testPanel.add(diagram4, "cell 0 1,grow");
-                    testPanel.add(diagram5, "cell 0 2,grow");
+
+                    //---- diagramExcavatorLoad ----
+                    diagramExcavatorLoad.setTitleText("Excavator loading");
+                    diagramExcavatorLoad.setPanelBackground(new Color(0xe0e0ff));
+                    diagramExcavatorLoad.setAlignmentX(1.5F);
+                    testPanel.add(diagramExcavatorLoad, "cell 0 0,grow");
+
+                    //---- diagramCrusherQueue ----
+                    diagramCrusherQueue.setTitleText("Queue in front of a stone crusher");
+                    diagramCrusherQueue.setPanelBackground(new Color(0xe0e0ff));
+                    testPanel.add(diagramCrusherQueue, "cell 0 1,grow");
+
+                    //---- diagramTransportTime ----
+                    diagramTransportTime.setTitleText("Ore transportation time");
+                    diagramTransportTime.setPanelBackground(new Color(0xe0e0ff));
+                    testPanel.add(diagramTransportTime, "cell 0 2,grow");
 
                     //======== panel1 ========
                     {
@@ -211,10 +224,12 @@ public class Main extends JFrame {
                         //---- checkBox1 ----
                         checkBox1.setText("Console logger");
                         checkBox1.setPreferredSize(new Dimension(200, 20));
+                        checkBox1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                         panel1.add(checkBox1, BorderLayout.WEST);
 
                         //---- button1 ----
                         button1.setText("Start");
+                        button1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                         panel1.add(button1, BorderLayout.EAST);
                     }
                     testPanel.add(panel1, "cell 0 3");
@@ -375,9 +390,9 @@ public class Main extends JFrame {
     private JScrollPane taskScrollPanel;
     private JTextPane textHtmTask;
     private JPanel testPanel;
-    private Diagram diagram3;
-    private Diagram diagram4;
-    private Diagram diagram5;
+    private Diagram diagramExcavatorLoad;
+    private Diagram diagramCrusherQueue;
+    private Diagram diagramTransportTime;
     private JPanel panel1;
     private JCheckBox checkBox1;
     private JButton button1;
