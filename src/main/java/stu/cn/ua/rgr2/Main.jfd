@@ -161,9 +161,9 @@ new FormModel {
 							"value": "cell 0 2,grow"
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-							name: "panel1"
+							name: "diagramInteractionPanel"
 							add( new FormComponent( "javax.swing.JCheckBox" ) {
-								name: "checkBox1"
+								name: "concoleLoggerCheckBox"
 								"text": "Console logger"
 								"preferredSize": new java.awt.Dimension( 200, 20 )
 								"font": new java.awt.Font( "Segoe UI", 0, 14 )
@@ -174,7 +174,7 @@ new FormModel {
 								"value": "West"
 							} )
 							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "button1"
+								name: "diagramStartbutton"
 								"text": "Start"
 								"font": new java.awt.Font( "Segoe UI", 0, 14 )
 							}, new FormLayoutConstraints( class java.lang.String ) {

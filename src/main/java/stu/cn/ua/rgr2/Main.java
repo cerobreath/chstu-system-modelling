@@ -84,8 +84,8 @@ public class Main extends JFrame {
         return diagramTransportTime;
     }
 
-    public JCheckBox getCheckBox1() {
-        return checkBox1;
+    public JCheckBox getConcoleLoggerCheckBox() {
+        return concoleLoggerCheckBox;
     }
 
     private void initComponents() {
@@ -107,9 +107,9 @@ public class Main extends JFrame {
         diagramExcavatorLoad = new Diagram();
         diagramCrusherQueue = new Diagram();
         diagramTransportTime = new Diagram();
-        panel1 = new JPanel();
-        checkBox1 = new JCheckBox();
-        button1 = new JButton();
+        diagramInteractionPanel = new JPanel();
+        concoleLoggerCheckBox = new JCheckBox();
+        diagramStartbutton = new JButton();
         statPanel = new JPanel();
         regresPanel = new JPanel();
         transientPanel = new JPanel();
@@ -261,22 +261,22 @@ public class Main extends JFrame {
                     diagramTransportTime.setPanelBackground(new Color(0xe0e0ff));
                     testPanel.add(diagramTransportTime, "cell 0 2,grow");
 
-                    //======== panel1 ========
+                    //======== diagramInteractionPanel ========
                     {
-                        panel1.setLayout(new BorderLayout());
+                        diagramInteractionPanel.setLayout(new BorderLayout());
 
-                        //---- checkBox1 ----
-                        checkBox1.setText("Console logger");
-                        checkBox1.setPreferredSize(new Dimension(200, 20));
-                        checkBox1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                        panel1.add(checkBox1, BorderLayout.WEST);
+                        //---- concoleLoggerCheckBox ----
+                        concoleLoggerCheckBox.setText("Console logger");
+                        concoleLoggerCheckBox.setPreferredSize(new Dimension(200, 20));
+                        concoleLoggerCheckBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                        diagramInteractionPanel.add(concoleLoggerCheckBox, BorderLayout.WEST);
 
-                        //---- button1 ----
-                        button1.setText("Start");
-                        button1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                        panel1.add(button1, BorderLayout.EAST);
+                        //---- diagramStartbutton ----
+                        diagramStartbutton.setText("Start");
+                        diagramStartbutton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                        diagramInteractionPanel.add(diagramStartbutton, BorderLayout.EAST);
                     }
-                    testPanel.add(panel1, "cell 0 3");
+                    testPanel.add(diagramInteractionPanel, "cell 0 3");
                 }
                 tabbedPane.addTab("Test", testPanel);
 
@@ -437,9 +437,9 @@ public class Main extends JFrame {
     private Diagram diagramExcavatorLoad;
     private Diagram diagramCrusherQueue;
     private Diagram diagramTransportTime;
-    private JPanel panel1;
-    private JCheckBox checkBox1;
-    private JButton button1;
+    private JPanel diagramInteractionPanel;
+    private JCheckBox concoleLoggerCheckBox;
+    private JButton diagramStartbutton;
     private JPanel statPanel;
     private JPanel regresPanel;
     private JPanel transientPanel;
