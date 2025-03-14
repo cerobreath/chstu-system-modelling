@@ -63,6 +63,7 @@ new FormModel {
 							"JavaCodeGenerator.postInitCode": "chooseDataDumpTrucks.setInt(5);"
 							"JavaCodeGenerator.variableGetter": true
 						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeDumpTrucks", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 4,aligny center,growy 0"
 					} )
@@ -91,6 +92,7 @@ new FormModel {
 							"JavaCodeGenerator.postInitCode": "chooseDataOreBatchSize.setInt(60);"
 							"JavaCodeGenerator.variableGetter": true
 						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeOreBatchSize", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 6,aligny center,growy 0"
 					} )
@@ -105,6 +107,7 @@ new FormModel {
 							"JavaCodeGenerator.postInitCode": "chooseDataSimulationTime.setInt(50);"
 							"JavaCodeGenerator.variableGetter": true
 						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeSimulationTime", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 7,aligny center,growy 0"
 					} )
@@ -113,6 +116,7 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane"
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "tabbedPaneStateChanged", true ) )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "taskScrollPanel"
 						add( new FormComponent( "javax.swing.JTextPane" ) {
@@ -132,8 +136,9 @@ new FormModel {
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagramExcavatorLoad"
 							"titleText": "Excavator loading"
-							"panelBackground": new java.awt.Color( 224, 224, 255, 255 )
-							"alignmentX": 1.5f
+							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
+							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
+							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}
@@ -143,7 +148,9 @@ new FormModel {
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagramCrusherQueue"
 							"titleText": "Queue in front of a stone crusher"
-							"panelBackground": new java.awt.Color( 224, 224, 255, 255 )
+							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
+							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
+							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}
@@ -153,7 +160,9 @@ new FormModel {
 						add( new FormComponent( "widgets.Diagram" ) {
 							name: "diagramTransportTime"
 							"titleText": "Ore transportation time"
-							"panelBackground": new java.awt.Color( 224, 224, 255, 255 )
+							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
+							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
+							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}

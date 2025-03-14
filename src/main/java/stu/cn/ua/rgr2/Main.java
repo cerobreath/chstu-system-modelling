@@ -4,6 +4,8 @@
 
 package stu.cn.ua.rgr2;
 
+import java.awt.event.*;
+import javax.swing.event.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import net.miginfocom.swing.MigLayout;
 import rnd.Negexp;
@@ -86,6 +88,58 @@ public class Main extends JFrame {
 
     public JCheckBox getConsoleLoggerCheckBox() {
         return consoleLoggerCheckBox;
+    }
+
+    private void onChangeSimulationTime(ActionEvent e) {
+        if (testPanel.isShowing()) {
+            try {
+                String str = chooseDataSimulationTime.getText();
+                diagramExcavatorLoad.setHorizontalMaxText(str);
+                diagramCrusherQueue.setHorizontalMaxText(str);
+                diagramTransportTime.setHorizontalMaxText(str);
+                System.out.println("Updated simulation time: " + str);
+            } catch (Exception ex) {
+                System.err.println("Error updating simulation time: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void onChangeDumpTrucks(ActionEvent e) {
+        if (testPanel.isShowing()) {
+            try {
+                String str = chooseDataDumpTrucks.getText();
+                diagramCrusherQueue.setVerticalMaxText(str);
+                diagramTransportTime.setVerticalMaxText(str);
+                System.out.println("Updated number of dump trucks: " + str);
+            } catch (Exception ex) {
+                System.err.println("Error updating number of dump trucks:: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void onChangeOreBatchSize(ActionEvent e) {
+        if (testPanel.isShowing()) {
+            try {
+                String str = chooseDataOreBatchSize.getText();
+                diagramExcavatorLoad.setVerticalMaxText(str);
+                System.out.println("Updated ore lot size: " + str);
+            } catch (Exception ex) {
+                System.err.println("Error updating ore lot size: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void tabbedPaneStateChanged(ChangeEvent e) {
+        if (tabbedPane.getSelectedComponent() == testPanel) {
+            diagramExcavatorLoad.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
+            diagramExcavatorLoad.setVerticalMaxText(String.valueOf(chooseDataOreBatchSize.getInt()));
+
+            diagramCrusherQueue.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
+            diagramCrusherQueue.setVerticalMaxText(String.valueOf(chooseDataDumpTrucks.getInt()));
+
+            diagramTransportTime.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
+            diagramTransportTime.setVerticalMaxText(String.valueOf(chooseDataDumpTrucks.getInt()));
+        }
     }
 
     private void initComponents() {
@@ -179,6 +233,7 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataDumpTrucks.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataDumpTrucks.setMinimumSize(new Dimension(50, 55));
+                chooseDataDumpTrucks.addActionListener(e -> onChangeDumpTrucks(e));
                 chooseDataDumpTrucks.setInt(5);
                 leftSettingModelPanel.add(chooseDataDumpTrucks, "cell 0 4,aligny center,growy 0");
 
@@ -203,6 +258,7 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataOreBatchSize.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataOreBatchSize.setMinimumSize(new Dimension(50, 55));
+                chooseDataOreBatchSize.addActionListener(e -> onChangeOreBatchSize(e));
                 chooseDataOreBatchSize.setInt(60);
                 leftSettingModelPanel.add(chooseDataOreBatchSize, "cell 0 6,aligny center,growy 0");
 
@@ -215,6 +271,7 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataSimulationTime.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataSimulationTime.setMinimumSize(new Dimension(50, 55));
+                chooseDataSimulationTime.addActionListener(e -> onChangeSimulationTime(e));
                 chooseDataSimulationTime.setInt(50);
                 leftSettingModelPanel.add(chooseDataSimulationTime, "cell 0 7,aligny center,growy 0");
             }
@@ -222,6 +279,7 @@ public class Main extends JFrame {
 
             //======== tabbedPane ========
             {
+                tabbedPane.addChangeListener(e -> tabbedPaneStateChanged(e));
 
                 //======== taskScrollPanel ========
                 {
@@ -247,18 +305,23 @@ public class Main extends JFrame {
 
                     //---- diagramExcavatorLoad ----
                     diagramExcavatorLoad.setTitleText("Excavator loading");
-                    diagramExcavatorLoad.setPanelBackground(new Color(0xe0e0ff));
-                    diagramExcavatorLoad.setAlignmentX(1.5F);
+                    diagramExcavatorLoad.setPanelBackground(new Color(0x575959));
+                    diagramExcavatorLoad.setGridColor(new Color(0x999999));
+                    diagramExcavatorLoad.setPainterColor(new Color(0xcc0000));
                     testPanel.add(diagramExcavatorLoad, "cell 0 0,grow");
 
                     //---- diagramCrusherQueue ----
                     diagramCrusherQueue.setTitleText("Queue in front of a stone crusher");
-                    diagramCrusherQueue.setPanelBackground(new Color(0xe0e0ff));
+                    diagramCrusherQueue.setPanelBackground(new Color(0x575959));
+                    diagramCrusherQueue.setGridColor(new Color(0x999999));
+                    diagramCrusherQueue.setPainterColor(new Color(0xcc0000));
                     testPanel.add(diagramCrusherQueue, "cell 0 1,grow");
 
                     //---- diagramTransportTime ----
                     diagramTransportTime.setTitleText("Ore transportation time");
-                    diagramTransportTime.setPanelBackground(new Color(0xe0e0ff));
+                    diagramTransportTime.setPanelBackground(new Color(0x575959));
+                    diagramTransportTime.setGridColor(new Color(0x999999));
+                    diagramTransportTime.setPainterColor(new Color(0xcc0000));
                     testPanel.add(diagramTransportTime, "cell 0 2,grow");
 
                     //======== diagramInteractionPanel ========
