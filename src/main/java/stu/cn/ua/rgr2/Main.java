@@ -1,6 +1,13 @@
 /*
  * Created by JFormDesigner on Wed Feb 26 07:39:29 EET 2025
  */
+// кількість автомобілів до дробарки
+// 3 діаграма - графік черги loader
+
+// Черга до самоскидів до ескаватора
+// Черга до навантажувача
+// Розмір купи руди
+// Стан дробарки (1/0)
 
 package stu.cn.ua.rgr2;
 
@@ -58,88 +65,116 @@ public class Main extends JFrame {
         return chooseRandomLoader;
     }
 
-    public ChooseData getChooseDataDumpTrucks() {
-        return chooseDataDumpTrucks;
+    public ChooseData getChooseDataDumper() {
+        return chooseDataDumper;
     }
 
     public ChooseData getChooseDataBunkerCapacity() {
         return chooseDataBunkerCapacity;
     }
 
-    public ChooseData getChooseDataOreBatchSize() {
-        return chooseDataOreBatchSize;
+    public ChooseData getChooseDataPortionOreDumpTruck() {
+        return chooseDataPortionOreDumpTruck;
     }
 
     public ChooseData getChooseDataSimulationTime() {
         return chooseDataSimulationTime;
     }
 
-    public Diagram getDiagramExcavatorLoad() {
-        return diagramExcavatorLoad;
+    public Diagram getDiagramQueueDumpTrucksToExcavator() {
+        return diagramQueueDumpTrucksToExcavator;
     }
 
-    public Diagram getDiagramCrusherQueue() {
-        return diagramCrusherQueue;
+    public Diagram getDiagramQueueToLoader() {
+        return diagramQueueToLoader;
     }
 
-    public Diagram getDiagramTransportTime() {
-        return diagramTransportTime;
+    public Diagram getDiagramOrePileSize() {
+        return diagramOrePileSize;
     }
 
     public JCheckBox getConsoleLoggerCheckBox() {
         return consoleLoggerCheckBox;
     }
 
-    private void onChangeSimulationTime(ActionEvent e) {
+    private void chooseDataOrePileSizeCaretUpdate(CaretEvent e) {
         if (testPanel.isShowing()) {
             try {
-                String str = chooseDataSimulationTime.getText();
-                diagramExcavatorLoad.setHorizontalMaxText(str);
-                diagramCrusherQueue.setHorizontalMaxText(str);
-                diagramTransportTime.setHorizontalMaxText(str);
-                System.out.println("Updated simulation time: " + str);
+                String value = chooseDataOrePileSize.getText();
+                diagramOrePileSize.setVerticalMaxText(value);
+                System.out.println("Updated Ore Pile Size diagram with: " + value);
             } catch (Exception ex) {
-                System.err.println("Error updating simulation time: " + ex.getMessage());
+                System.err.println("Error updating Ore Pile Size diagram: " + ex.getMessage());
             }
         }
     }
 
-    private void onChangeDumpTrucks(ActionEvent e) {
+    private void chooseDataSimulationTimeCaretUpdate(CaretEvent e) {
         if (testPanel.isShowing()) {
             try {
-                String str = chooseDataDumpTrucks.getText();
-                diagramCrusherQueue.setVerticalMaxText(str);
-                diagramTransportTime.setVerticalMaxText(str);
-                System.out.println("Updated number of dump trucks: " + str);
+                String simulationTime = chooseDataSimulationTime.getText();
+                diagramQueueDumpTrucksToExcavator.setHorizontalMaxText(simulationTime);
+                diagramQueueToLoader.setHorizontalMaxText(simulationTime);
+                diagramOrePileSize.setHorizontalMaxText(simulationTime);
+                diagramCrusherCondition.setHorizontalMaxText(simulationTime);
+                System.out.println("Updated all diagrams' simulation time to: " + simulationTime);
             } catch (Exception ex) {
-                System.err.println("Error updating number of dump trucks:: " + ex.getMessage());
+                System.err.println("Error updating simulation time for diagrams: " + ex.getMessage());
             }
         }
     }
 
-    private void onChangeOreBatchSize(ActionEvent e) {
+    private void chooseDataPortionOreDumpTruckCaretUpdate(CaretEvent e) {
         if (testPanel.isShowing()) {
             try {
-                String str = chooseDataOreBatchSize.getText();
-                diagramExcavatorLoad.setVerticalMaxText(str);
-                System.out.println("Updated ore lot size: " + str);
+                String portionSize = chooseDataPortionOreDumpTruck.getText();
+                diagramCrusherCondition.setVerticalMaxText(portionSize);
+                System.out.println("Updated Crusher Condition diagram with: " + portionSize);
             } catch (Exception ex) {
-                System.err.println("Error updating ore lot size: " + ex.getMessage());
+                System.err.println("Error updating Crusher Condition diagram: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void chooseDataDumperCaretUpdate(CaretEvent e) {
+        if (testPanel.isShowing()) {
+            try {
+                String dumperCount = chooseDataDumper.getText();
+                diagramQueueDumpTrucksToExcavator.setVerticalMaxText(dumperCount);
+                System.out.println("Updated Queue of dump trucks diagram with: " + dumperCount);
+            } catch (Exception ex) {
+                System.err.println("Error updating Queue of dump trucks diagram: " + ex.getMessage());
             }
         }
     }
 
     private void tabbedPaneStateChanged(ChangeEvent e) {
         if (tabbedPane.getSelectedComponent() == testPanel) {
-            diagramExcavatorLoad.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
-            diagramExcavatorLoad.setVerticalMaxText(String.valueOf(chooseDataOreBatchSize.getInt()));
+            try {
+                String simulationTime = chooseDataSimulationTime.getText();
+                diagramQueueDumpTrucksToExcavator.setHorizontalMaxText(simulationTime);
+                diagramQueueToLoader.setHorizontalMaxText(simulationTime);
+                diagramOrePileSize.setHorizontalMaxText(simulationTime);
+                diagramCrusherCondition.setHorizontalMaxText(simulationTime);
 
-            diagramCrusherQueue.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
-            diagramCrusherQueue.setVerticalMaxText(String.valueOf(chooseDataDumpTrucks.getInt()));
+                diagramQueueDumpTrucksToExcavator.setVerticalMaxText(chooseDataDumper.getText());
+                diagramOrePileSize.setVerticalMaxText(chooseDataOrePileSize.getText());
+                diagramCrusherCondition.setVerticalMaxText(chooseDataPortionOreDumpTruck.getText());
+                diagramQueueToLoader.setVerticalMaxText(chooseDataBunkerCapacity.getText());
 
-            diagramTransportTime.setHorizontalMaxText(String.valueOf(chooseDataSimulationTime.getInt()));
-            diagramTransportTime.setVerticalMaxText(String.valueOf(chooseDataDumpTrucks.getInt()));
+                System.out.println("Initialized all diagram settings based on default values");
+            } catch (Exception ex) {
+                System.err.println("Error initializing diagram settings: " + ex.getMessage());
+            }
         }
+    }
+
+    public ChooseData getChooseDataOrePileSize() {
+        return chooseDataOrePileSize;
+    }
+
+    public Diagram getDiagramCrusherCondition() {
+        return diagramCrusherCondition;
     }
 
     private void initComponents() {
@@ -150,17 +185,19 @@ public class Main extends JFrame {
         chooseRandomExcavator = new ChooseRandom();
         chooseRandomCrusher = new ChooseRandom();
         chooseRandomLoader = new ChooseRandom();
-        chooseDataDumpTrucks = new ChooseData();
+        chooseDataDumper = new ChooseData();
         chooseDataBunkerCapacity = new ChooseData();
-        chooseDataOreBatchSize = new ChooseData();
+        chooseDataPortionOreDumpTruck = new ChooseData();
+        chooseDataOrePileSize = new ChooseData();
         chooseDataSimulationTime = new ChooseData();
         tabbedPane = new JTabbedPane();
         taskScrollPanel = new JScrollPane();
         textHtmTask = new JTextPane();
         testPanel = new JPanel();
-        diagramExcavatorLoad = new Diagram();
-        diagramCrusherQueue = new Diagram();
-        diagramTransportTime = new Diagram();
+        diagramQueueDumpTrucksToExcavator = new Diagram();
+        diagramQueueToLoader = new Diagram();
+        diagramOrePileSize = new Diagram();
+        diagramCrusherCondition = new Diagram();
         diagramInteractionPanel = new JPanel();
         consoleLoggerCheckBox = new JCheckBox();
         diagramStartbutton = new JButton();
@@ -186,6 +223,7 @@ public class Main extends JFrame {
                     // columns
                     "[262,fill]",
                     // rows
+                    "[]" +
                     "[]" +
                     "[]" +
                     "[]" +
@@ -224,18 +262,18 @@ public class Main extends JFrame {
                 chooseRandomLoader.setRandom(new Norm(30, 5));
                 leftSettingModelPanel.add(chooseRandomLoader, "cell 0 3,aligny center,growy 0");
 
-                //---- chooseDataDumpTrucks ----
-                chooseDataDumpTrucks.setBackground(new Color(0x3c3f41));
-                chooseDataDumpTrucks.setTitle("Number of dumpers");
-                chooseDataDumpTrucks.setBorder(new CompoundBorder(
+                //---- chooseDataDumper ----
+                chooseDataDumper.setBackground(new Color(0x3c3f41));
+                chooseDataDumper.setTitle("Number of dumpers");
+                chooseDataDumper.setBorder(new CompoundBorder(
                     new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Number of dumpers", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataDumpTrucks.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataDumpTrucks.setMinimumSize(new Dimension(50, 55));
-                chooseDataDumpTrucks.addActionListener(e -> onChangeDumpTrucks(e));
-                chooseDataDumpTrucks.setInt(5);
-                leftSettingModelPanel.add(chooseDataDumpTrucks, "cell 0 4,aligny center,growy 0");
+                chooseDataDumper.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataDumper.setMinimumSize(new Dimension(50, 55));
+                chooseDataDumper.addCaretListener(e -> chooseDataDumperCaretUpdate(e));
+                chooseDataDumper.setInt(8);
+                leftSettingModelPanel.add(chooseDataDumper, "cell 0 4,aligny center,growy 0");
 
                 //---- chooseDataBunkerCapacity ----
                 chooseDataBunkerCapacity.setBackground(new Color(0x3c3f41));
@@ -246,21 +284,34 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataBunkerCapacity.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataBunkerCapacity.setMinimumSize(new Dimension(50, 55));
-                chooseDataBunkerCapacity.setInt(100);
+                chooseDataBunkerCapacity.setInt(50);
                 leftSettingModelPanel.add(chooseDataBunkerCapacity, "cell 0 5,aligny center,growy 0");
 
-                //---- chooseDataOreBatchSize ----
-                chooseDataOreBatchSize.setBackground(new Color(0x3c3f41));
-                chooseDataOreBatchSize.setTitle("Maximum ore lot size");
-                chooseDataOreBatchSize.setBorder(new CompoundBorder(
-                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Maximum ore lot size", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                //---- chooseDataPortionOreDumpTruck ----
+                chooseDataPortionOreDumpTruck.setBackground(new Color(0x3c3f41));
+                chooseDataPortionOreDumpTruck.setTitle("Portion of ore in a dump truck");
+                chooseDataPortionOreDumpTruck.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Portion of ore in a dump truck", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
                         new Font("Dialog", Font.PLAIN, 14)),
                     new BevelBorder(BevelBorder.LOWERED)));
-                chooseDataOreBatchSize.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                chooseDataOreBatchSize.setMinimumSize(new Dimension(50, 55));
-                chooseDataOreBatchSize.addActionListener(e -> onChangeOreBatchSize(e));
-                chooseDataOreBatchSize.setInt(60);
-                leftSettingModelPanel.add(chooseDataOreBatchSize, "cell 0 6,aligny center,growy 0");
+                chooseDataPortionOreDumpTruck.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataPortionOreDumpTruck.setMinimumSize(new Dimension(50, 55));
+                chooseDataPortionOreDumpTruck.addCaretListener(e -> chooseDataPortionOreDumpTruckCaretUpdate(e));
+                chooseDataPortionOreDumpTruck.setInt(6);
+                leftSettingModelPanel.add(chooseDataPortionOreDumpTruck, "cell 0 6,aligny center,growy 0");
+
+                //---- chooseDataOrePileSize ----
+                chooseDataOrePileSize.setBackground(new Color(0x3c3f41));
+                chooseDataOrePileSize.setTitle("Ore pile size");
+                chooseDataOrePileSize.setBorder(new CompoundBorder(
+                    new TitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Ore pile size", TitledBorder.CENTER, TitledBorder.BELOW_TOP,
+                        new Font("Dialog", Font.PLAIN, 14)),
+                    new BevelBorder(BevelBorder.LOWERED)));
+                chooseDataOrePileSize.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                chooseDataOrePileSize.setMinimumSize(new Dimension(50, 55));
+                chooseDataOrePileSize.addCaretListener(e -> chooseDataOrePileSizeCaretUpdate(e));
+                chooseDataOrePileSize.setInt(3);
+                leftSettingModelPanel.add(chooseDataOrePileSize, "cell 0 7,aligny center,growy 0");
 
                 //---- chooseDataSimulationTime ----
                 chooseDataSimulationTime.setBackground(new Color(0x3c3f41));
@@ -271,9 +322,9 @@ public class Main extends JFrame {
                     new BevelBorder(BevelBorder.LOWERED)));
                 chooseDataSimulationTime.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                 chooseDataSimulationTime.setMinimumSize(new Dimension(50, 55));
-                chooseDataSimulationTime.addActionListener(e -> onChangeSimulationTime(e));
-                chooseDataSimulationTime.setInt(50);
-                leftSettingModelPanel.add(chooseDataSimulationTime, "cell 0 7,aligny center,growy 0");
+                chooseDataSimulationTime.addCaretListener(e -> chooseDataSimulationTimeCaretUpdate(e));
+                chooseDataSimulationTime.setInt(500);
+                leftSettingModelPanel.add(chooseDataSimulationTime, "cell 0 8,aligny center,growy 0");
             }
             splitPane.setLeftComponent(leftSettingModelPanel);
 
@@ -301,28 +352,41 @@ public class Main extends JFrame {
                         "[grow]" +
                         "[grow]rel" +
                         "[grow]" +
+                        "[]" +
+                        "[]" +
                         "[]"));
 
-                    //---- diagramExcavatorLoad ----
-                    diagramExcavatorLoad.setTitleText("Excavator loading");
-                    diagramExcavatorLoad.setPanelBackground(new Color(0x575959));
-                    diagramExcavatorLoad.setGridColor(new Color(0x999999));
-                    diagramExcavatorLoad.setPainterColor(new Color(0xcc0000));
-                    testPanel.add(diagramExcavatorLoad, "cell 0 0,grow");
+                    //---- diagramQueueDumpTrucksToExcavator ----
+                    diagramQueueDumpTrucksToExcavator.setTitleText("Queue of dump trucks to the excavator");
+                    diagramQueueDumpTrucksToExcavator.setPanelBackground(new Color(0x575959));
+                    diagramQueueDumpTrucksToExcavator.setGridColor(new Color(0x999999));
+                    diagramQueueDumpTrucksToExcavator.setPainterColor(new Color(0xcc0000));
+                    diagramQueueDumpTrucksToExcavator.setGridByX(10);
+                    testPanel.add(diagramQueueDumpTrucksToExcavator, "cell 0 0,grow");
 
-                    //---- diagramCrusherQueue ----
-                    diagramCrusherQueue.setTitleText("Queue in front of a stone crusher");
-                    diagramCrusherQueue.setPanelBackground(new Color(0x575959));
-                    diagramCrusherQueue.setGridColor(new Color(0x999999));
-                    diagramCrusherQueue.setPainterColor(new Color(0xcc0000));
-                    testPanel.add(diagramCrusherQueue, "cell 0 1,grow");
+                    //---- diagramQueueToLoader ----
+                    diagramQueueToLoader.setTitleText("Queue to the loader");
+                    diagramQueueToLoader.setPanelBackground(new Color(0x575959));
+                    diagramQueueToLoader.setGridColor(new Color(0x999999));
+                    diagramQueueToLoader.setPainterColor(new Color(0xcc0000));
+                    diagramQueueToLoader.setGridByX(10);
+                    testPanel.add(diagramQueueToLoader, "cell 0 1,grow");
 
-                    //---- diagramTransportTime ----
-                    diagramTransportTime.setTitleText("Ore transportation time");
-                    diagramTransportTime.setPanelBackground(new Color(0x575959));
-                    diagramTransportTime.setGridColor(new Color(0x999999));
-                    diagramTransportTime.setPainterColor(new Color(0xcc0000));
-                    testPanel.add(diagramTransportTime, "cell 0 2,grow");
+                    //---- diagramOrePileSize ----
+                    diagramOrePileSize.setTitleText("Ore pile size");
+                    diagramOrePileSize.setPanelBackground(new Color(0x575959));
+                    diagramOrePileSize.setGridColor(new Color(0x999999));
+                    diagramOrePileSize.setPainterColor(new Color(0xcc0000));
+                    diagramOrePileSize.setGridByX(10);
+                    testPanel.add(diagramOrePileSize, "cell 0 2,grow");
+
+                    //---- diagramCrusherCondition ----
+                    diagramCrusherCondition.setTitleText("Crusher condition");
+                    diagramCrusherCondition.setPanelBackground(new Color(0x575959));
+                    diagramCrusherCondition.setGridColor(new Color(0x999999));
+                    diagramCrusherCondition.setPainterColor(new Color(0xcc0000));
+                    diagramCrusherCondition.setGridByX(10);
+                    testPanel.add(diagramCrusherCondition, "cell 0 3,grow");
 
                     //======== diagramInteractionPanel ========
                     {
@@ -339,7 +403,7 @@ public class Main extends JFrame {
                         diagramStartbutton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
                         diagramInteractionPanel.add(diagramStartbutton, BorderLayout.EAST);
                     }
-                    testPanel.add(diagramInteractionPanel, "cell 0 3");
+                    testPanel.add(diagramInteractionPanel, "cell 0 4");
                 }
                 tabbedPane.addTab("Test", testPanel);
 
@@ -432,7 +496,7 @@ public class Main extends JFrame {
             splitPane.setRightComponent(tabbedPane);
         }
         contentPane.add(splitPane, BorderLayout.CENTER);
-        setSize(900, 690);
+        setSize(960, 865);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -489,17 +553,19 @@ public class Main extends JFrame {
     private ChooseRandom chooseRandomExcavator;
     private ChooseRandom chooseRandomCrusher;
     private ChooseRandom chooseRandomLoader;
-    private ChooseData chooseDataDumpTrucks;
+    private ChooseData chooseDataDumper;
     private ChooseData chooseDataBunkerCapacity;
-    private ChooseData chooseDataOreBatchSize;
+    private ChooseData chooseDataPortionOreDumpTruck;
+    private ChooseData chooseDataOrePileSize;
     private ChooseData chooseDataSimulationTime;
     private JTabbedPane tabbedPane;
     private JScrollPane taskScrollPanel;
     private JTextPane textHtmTask;
     private JPanel testPanel;
-    private Diagram diagramExcavatorLoad;
-    private Diagram diagramCrusherQueue;
-    private Diagram diagramTransportTime;
+    private Diagram diagramQueueDumpTrucksToExcavator;
+    private Diagram diagramQueueToLoader;
+    private Diagram diagramOrePileSize;
+    private Diagram diagramCrusherCondition;
     private JPanel diagramInteractionPanel;
     private JCheckBox consoleLoggerCheckBox;
     private JButton diagramStartbutton;

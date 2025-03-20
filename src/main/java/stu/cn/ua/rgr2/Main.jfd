@@ -12,7 +12,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3,aligny center"
 					"$columnConstraints": "[262,fill]"
-					"$rowConstraints": "[][][][][][][][]"
+					"$rowConstraints": "[][][][][][][][][]"
 				} ) {
 					name: "leftSettingModelPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -53,17 +53,17 @@ new FormModel {
 						"value": "cell 0 3,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataDumpTrucks"
+						name: "chooseDataDumper"
 						"background": new java.awt.Color( 60, 63, 65, 255 )
 						"title": "Number of dumpers"
 						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( &EtchedBorder0 new javax.swing.border.EtchedBorder( 0, null, null ), "Number of dumpers", 2, 3, new java.awt.Font( "Dialog", 0, 14 ), null ), &BevelBorder0 new javax.swing.border.BevelBorder( 1, null, null, null, null ) )
 						"font": new java.awt.Font( "Segoe UI", 0, 14 )
 						"minimumSize": new java.awt.Dimension( 50, 55 )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataDumpTrucks.setInt(5);"
+							"JavaCodeGenerator.postInitCode": "chooseDataDumper.setInt(8);"
 							"JavaCodeGenerator.variableGetter": true
 						}
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeDumpTrucks", true ) )
+						addEvent( new FormEvent( "javax.swing.event.CaretListener", "caretUpdate", "chooseDataDumperCaretUpdate", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 4,aligny center,growy 0"
 					} )
@@ -75,26 +75,41 @@ new FormModel {
 						"font": &Font1 new java.awt.Font( "Segoe UI", 0, 14 )
 						"minimumSize": &Dimension0 new java.awt.Dimension( 50, 55 )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataBunkerCapacity.setInt(100);"
+							"JavaCodeGenerator.postInitCode": "chooseDataBunkerCapacity.setInt(50);"
 							"JavaCodeGenerator.variableGetter": true
 						}
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
-						name: "chooseDataOreBatchSize"
+						name: "chooseDataPortionOreDumpTruck"
 						"background": #Color0
-						"title": "Maximum ore lot size"
-						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Maximum ore lot size", 2, 3, #Font0, null ), #BevelBorder0 )
+						"title": "Portion of ore in a dump truck"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Portion of ore in a dump truck", 2, 3, #Font0, null ), #BevelBorder0 )
 						"font": #Font1
 						"minimumSize": #Dimension0
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataOreBatchSize.setInt(60);"
+							"JavaCodeGenerator.postInitCode": "chooseDataPortionOreDumpTruck.setInt(6);"
 							"JavaCodeGenerator.variableGetter": true
 						}
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeOreBatchSize", true ) )
+						addEvent( new FormEvent( "javax.swing.event.CaretListener", "caretUpdate", "chooseDataPortionOreDumpTruckCaretUpdate", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 6,aligny center,growy 0"
+					} )
+					add( new FormComponent( "widgets.ChooseData" ) {
+						name: "chooseDataOrePileSize"
+						"background": #Color0
+						"title": "Ore pile size"
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( #EtchedBorder0, "Ore pile size", 2, 3, #Font0, null ), #BevelBorder0 )
+						"font": #Font1
+						"minimumSize": #Dimension0
+						auxiliary() {
+							"JavaCodeGenerator.postInitCode": "chooseDataOrePileSize.setInt(3);"
+							"JavaCodeGenerator.variableGetter": true
+						}
+						addEvent( new FormEvent( "javax.swing.event.CaretListener", "caretUpdate", "chooseDataOrePileSizeCaretUpdate", true ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 7,aligny center,growy 0"
 					} )
 					add( new FormComponent( "widgets.ChooseData" ) {
 						name: "chooseDataSimulationTime"
@@ -104,12 +119,12 @@ new FormModel {
 						"font": new java.awt.Font( "Segoe UI", 0, 14 )
 						"minimumSize": new java.awt.Dimension( 50, 55 )
 						auxiliary() {
-							"JavaCodeGenerator.postInitCode": "chooseDataSimulationTime.setInt(50);"
+							"JavaCodeGenerator.postInitCode": "chooseDataSimulationTime.setInt(500);"
 							"JavaCodeGenerator.variableGetter": true
 						}
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onChangeSimulationTime", true ) )
+						addEvent( new FormEvent( "javax.swing.event.CaretListener", "caretUpdate", "chooseDataSimulationTimeCaretUpdate", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 7,aligny center,growy 0"
+						"value": "cell 0 8,aligny center,growy 0"
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "left"
@@ -130,15 +145,16 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 						"$layoutConstraints": "hidemode 3"
 						"$columnConstraints": "[646,grow,fill]"
-						"$rowConstraints": "[grow][grow]rel[grow][]"
+						"$rowConstraints": "[grow][grow]rel[grow][][][]"
 					} ) {
 						name: "testPanel"
 						add( new FormComponent( "widgets.Diagram" ) {
-							name: "diagramExcavatorLoad"
-							"titleText": "Excavator loading"
+							name: "diagramQueueDumpTrucksToExcavator"
+							"titleText": "Queue of dump trucks to the excavator"
 							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
 							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
 							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
+							"gridByX": 10
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}
@@ -146,11 +162,12 @@ new FormModel {
 							"value": "cell 0 0,grow"
 						} )
 						add( new FormComponent( "widgets.Diagram" ) {
-							name: "diagramCrusherQueue"
-							"titleText": "Queue in front of a stone crusher"
+							name: "diagramQueueToLoader"
+							"titleText": "Queue to the loader"
 							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
 							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
 							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
+							"gridByX": 10
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}
@@ -158,16 +175,30 @@ new FormModel {
 							"value": "cell 0 1,grow"
 						} )
 						add( new FormComponent( "widgets.Diagram" ) {
-							name: "diagramTransportTime"
-							"titleText": "Ore transportation time"
-							"panelBackground": new java.awt.Color( 87, 89, 89, 255 )
-							"gridColor": new java.awt.Color( 153, 153, 153, 255 )
-							"painterColor": new java.awt.Color( 204, 0, 0, 255 )
+							name: "diagramOrePileSize"
+							"titleText": "Ore pile size"
+							"panelBackground": &Color1 new java.awt.Color( 87, 89, 89, 255 )
+							"gridColor": &Color2 new java.awt.Color( 153, 153, 153, 255 )
+							"painterColor": &Color3 new java.awt.Color( 204, 0, 0, 255 )
+							"gridByX": 10
 							auxiliary() {
 								"JavaCodeGenerator.variableGetter": true
 							}
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 							"value": "cell 0 2,grow"
+						} )
+						add( new FormComponent( "widgets.Diagram" ) {
+							name: "diagramCrusherCondition"
+							"titleText": "Crusher condition"
+							"panelBackground": #Color1
+							"gridColor": #Color2
+							"painterColor": #Color3
+							"gridByX": 10
+							auxiliary() {
+								"JavaCodeGenerator.variableGetter": true
+							}
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 3,grow"
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 							name: "diagramInteractionPanel"
@@ -190,7 +221,7 @@ new FormModel {
 								"value": "East"
 							} )
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-							"value": "cell 0 3"
+							"value": "cell 0 4"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Test"
@@ -260,8 +291,8 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 20, 5 )
-			"size": new java.awt.Dimension( 900, 690 )
+			"location": new java.awt.Point( 45, 0 )
+			"size": new java.awt.Dimension( 960, 865 )
 		} )
 	}
 }
