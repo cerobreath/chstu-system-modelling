@@ -14,5 +14,6 @@ public class Loader extends Actor {
     }
 
     public void setRnd(RandomGenerators random) {
+
     }
 }

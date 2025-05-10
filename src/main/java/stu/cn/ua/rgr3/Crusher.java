@@ -13,5 +13,6 @@ public class Crusher extends Actor {
     }
 
     public void setFinishTime(double aDouble) {
+
     }
 }

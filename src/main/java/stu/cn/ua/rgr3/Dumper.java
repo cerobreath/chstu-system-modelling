@@ -9,5 +9,6 @@ public class Dumper extends Actor {
     }
 
     public void setFinishTime(double aDouble) {
+
     }
 }
