@@ -61,7 +61,7 @@ public class Main extends JFrame {
         regresPanel = new JPanel();
         transientPanel = new JPanel();
         infoPanel = new JPanel();
-        photoPanel = createPhotoPanel();
+        photoPanel = new JPanel();
         textInfoAuthor = new JTextArea();
 
         //======== this ========
@@ -242,6 +242,7 @@ public class Main extends JFrame {
 
                     //======== photoPanel ========
                     {
+                        photoPanel.setPreferredSize(new Dimension(500, 500));
                         photoPanel.setLayout(null);
 
                         {
@@ -260,8 +261,6 @@ public class Main extends JFrame {
                         }
                     }
                     infoPanel.add(photoPanel, "cell 0 0");
-                    // A crutch in the code
-                    photoPanel.setPreferredSize(new Dimension(1500, 1500));
 
                     //---- textInfoAuthor ----
                     textInfoAuthor.setText("Author of the project:\nLysenok Denys Vitaliiovych,\n3rd year student majoring in Computer Engineering\nEmail: cerobreath@gmail.com\nGitHub: cerobreath");
